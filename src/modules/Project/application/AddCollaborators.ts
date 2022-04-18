@@ -21,5 +21,6 @@ export class AddCollaborators {
     project.addCollaborators(collaboratorsUuid);
 
     await this.repository.save(project);
+    return await this.eventBus.publish(project.extractDomainEvents());
   }
 }

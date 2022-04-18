@@ -1,5 +1,6 @@
 import { DomainEntity } from '../../Shared/domain/Entity';
 import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import { ProjectCollaboratorsAddedDomainEvent } from './ProjectCollaboratorsAddedDomainEvent';
 import { ProjectCreatedDomainEvent } from './ProjectCreatedDomainEvent';
 
 export class Project extends DomainEntity {
@@ -37,6 +38,13 @@ export class Project extends DomainEntity {
     collaborators.forEach(element => {
       this.collaboratorsIds.push(element);
     });
+
+    this.addDomainEvent(
+      new ProjectCollaboratorsAddedDomainEvent(
+        this.id.value,
+        collaborators.map(coll => coll.value)
+      )
+    );
   }
 
   public toPrimitives() {
