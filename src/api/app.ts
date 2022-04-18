@@ -1,5 +1,6 @@
 import { createConnection } from 'typeorm';
-import { InMemorySyncEventBus } from '../modules/shared/infrastructure/EventBus/InMemorySyncEventBus';
+import { InMemorySyncEventBus } from '../modules/Shared/infrastructure/EventBus/InMemorySyncEventBus';
+
 import { Server } from './server';
 
 (async () => {

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node dist/src/api/app.js",
-    "dev": "ts-node src/api/app.ts",
+    "dev": "ts-node src/api/pru.ts",
     "build": "npm run build:clean && npm run build:tsc",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:clean": "rm -r dist; exit 0",

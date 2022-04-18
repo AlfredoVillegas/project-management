@@ -1,6 +1,6 @@
 import { DomainEvent } from './DomainEvent';
 
-export abstract class Entity {
+export abstract class DomainEntity {
   private domainEvents: Array<DomainEvent>;
 
   constructor() {
