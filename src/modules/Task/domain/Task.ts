@@ -1,6 +1,7 @@
 import { DomainEntity } from '../../Shared/domain/Entity';
 import { Uuid } from '../../Shared/domain/value-object/Uuid';
 import { TaskAcceptedDomainEvent } from './TaskAcceptedDomainEvent';
+import { TaskCreatedDomainEvent } from './TaskCreatedDomainEvent';
 import { TaskStatus } from './TaskStatus';
 
 export class Task extends DomainEntity {
@@ -28,6 +29,7 @@ export class Task extends DomainEntity {
   static create(id: Uuid, name: string, description: string, projectId: Uuid): Task {
     const status = new TaskStatus('created');
     const task = new Task(id, name, description, status, projectId);
+    task.addDomainEvent(new TaskCreatedDomainEvent(task.id.value, task.name, task.projectId.value));
     return task;
   }
 
