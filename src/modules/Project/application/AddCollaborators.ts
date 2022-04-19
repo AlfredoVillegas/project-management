@@ -14,8 +14,8 @@ export class AddCollaborators {
     this.ProjectFinderService = new ProjectFinder(repository);
   }
 
-  public async execute(id: string, collaborators: string[]): Promise<void> {
-    const project = await this.ProjectFinderService.execute(id);
+  public async execute(projectId: string, collaborators: string[]): Promise<void> {
+    const project = await this.ProjectFinderService.execute(projectId);
 
     const collaboratorsUuid = collaborators.map(element => new Uuid(element));
     project.addCollaborators(collaboratorsUuid);
