@@ -11,7 +11,7 @@ export class TaskStatus {
 
   private isValid(value: string) {
     if (!this.statusAllowed.includes(value)) {
-      throw new InvalidArgumentError();
+      throw new InvalidArgumentError(`Status '${value}' invalid, status allowed : 'created', 'accepted', 'completed' `);
     }
   }
 }

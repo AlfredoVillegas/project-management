@@ -1,8 +1,8 @@
 import { DomainEntity } from '../../Shared/domain/Entity';
 import { Uuid } from '../../Shared/domain/value-object/Uuid';
-import { TaskAcceptedDomainEvent } from './TaskAcceptedDomainEvent';
 import { TaskCreatedDomainEvent } from './TaskCreatedDomainEvent';
 import { TaskStatus } from './TaskStatus';
+import { TaskStatusUpdatedDomainEvent } from './TaskStatusUpdatedDomainEvent';
 
 export class Task extends DomainEntity {
   readonly id: Uuid;
@@ -33,8 +33,8 @@ export class Task extends DomainEntity {
     return task;
   }
 
-  public accept(collaborator: Uuid): void {
-    this._status = new TaskStatus('accepted');
-    this.addDomainEvent(new TaskAcceptedDomainEvent(this.id.value, collaborator.value));
+  public updateStatus(collaborator: Uuid, status: TaskStatus): void {
+    this._status = status;
+    this.addDomainEvent(new TaskStatusUpdatedDomainEvent(this.id.value, collaborator.value, this._status.value));
   }
 }
