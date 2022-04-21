@@ -5,8 +5,8 @@ export class TaskStatusUpdatedDomainEvent extends DomainEvent {
   readonly collaborator: string;
   readonly status: string;
 
-  constructor(entityId: string, collaborator: string, status: string) {
-    super(TaskStatusUpdatedDomainEvent.EVENT_NAME, entityId);
+  constructor(taskId: string, collaborator: string, status: string) {
+    super(TaskStatusUpdatedDomainEvent.EVENT_NAME, taskId);
     this.collaborator = collaborator;
     this.status = status;
   }
