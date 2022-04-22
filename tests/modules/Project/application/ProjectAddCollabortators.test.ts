@@ -1,4 +1,4 @@
-import { AddCollaborators } from '../../../../src/modules/Project/application/AddCollaborators';
+import { AddCollaborators } from '../../../../src/modules/Projects/application/AddCollaborators';
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
 import { EventBusMock } from '../__mocks__/EventBusMock';
 import { projectDataForTest } from '../__mocks__/projectDataForTest';
@@ -17,16 +17,16 @@ beforeEach(() => {
 });
 
 describe('Test of Project AddCollaborators', () => {
-  it('should add collaborators in project', async () => {
+  it('should must add collaborators to an existing project', async () => {
     const collaborator = Uuid.random();
 
     await addCollaborators.execute(projectEntity.id.value, [collaborator.value]);
 
     const projectInDb = await projectRepository.searchOneBy(projectEntity.id);
-    const findCollaborator = projectInDb?.collaboratorsIds.find(coll => coll.value === collaborator.value);
+    const collaboratorFound = projectInDb?.collaboratorsIds.find(coll => coll.value === collaborator.value);
 
-    expect(findCollaborator).toBeInstanceOf(Uuid);
-    expect(findCollaborator?.value).toEqual(collaborator.value);
+    expect(collaboratorFound).toBeInstanceOf(Uuid);
+    expect(collaboratorFound?.value).toEqual(collaborator.value);
     expect(eventBus.getCallsToPublishEvent()).toEqual(1);
   });
 });

@@ -1,4 +1,4 @@
-import { ProjectParams } from '../../../../src/modules/Project/application/ProjectCreator';
+import { ProjectParams } from '../../../../src/modules/Projects/application/ProjectCreator';
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
 
 export function projectDataForTest(): ProjectParams {

@@ -1,13 +1,13 @@
-import { ProjectParams } from '../../../../src/modules/Project/application/ProjectCreator';
-import { Project } from '../../../../src/modules/Project/domain/Project';
-import { ProjectRepository } from '../../../../src/modules/Project/domain/ProjectRepository';
+import { ProjectParams } from '../../../../src/modules/Projects/application/ProjectCreator';
+import { Project } from '../../../../src/modules/Projects/domain/Project';
+import { ProjectRepository } from '../../../../src/modules/Projects/domain/ProjectRepository';
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
 
 export class ProjectRepositoryMock implements ProjectRepository {
   private projects: Project[] = [];
 
   static createEntityDomainFromDataTest(data: ProjectParams): Project {
-    return new Project(new Uuid(data.id), data.name, data.description, new Uuid(data.creator), []);
+    return new Project(new Uuid(data.id), data.name, data.description, new Uuid(data.creator));
   }
 
   async save(project: Project): Promise<void> {
