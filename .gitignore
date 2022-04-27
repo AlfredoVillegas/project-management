@@ -7,3 +7,4 @@ src/api/pru.ts
 project.sql
 project.sql-shm
 project.sql-wal
+ls.ts
