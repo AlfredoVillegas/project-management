@@ -1,26 +1,26 @@
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
-import { TaskStatusUpdater } from '../../../../src/modules/Tasks/application/TaskStatusUpdater';
+import { TaskAccepter } from '../../../../src/modules/Tasks/application/TaskAccepter';
 import { EventBusMock } from '../../Project/__mocks__/EventBusMock';
 import { tasktDataForTest } from '../__mocks__/taskDataForTest';
 import { TaskRepositoryMock } from '../__mocks__/TaskRepositoryMosck';
 
 let taskRepository: TaskRepositoryMock;
-let taskStatusUpdater: TaskStatusUpdater;
+let taskAccepter: TaskAccepter;
 let eventBus: EventBusMock;
 let taskEntity = TaskRepositoryMock.createEntityDomainFromDataTest(tasktDataForTest());
 
 beforeEach(() => {
   eventBus = new EventBusMock();
   taskRepository = new TaskRepositoryMock();
-  taskStatusUpdater = new TaskStatusUpdater(taskRepository, eventBus);
+  taskAccepter = new TaskAccepter(taskRepository, eventBus);
   taskRepository.save(taskEntity);
 });
 
-describe('Test of TaskStatusUpdater', () => {
-  it('should update the status of an existing task to "completed" ', async () => {
-    const statusExpected = 'completed';
+describe('Test of TaskAccepter', () => {
+  it('should acepted task of an existing task to "accepted" ', async () => {
+    const statusExpected = 'accepted';
 
-    await taskStatusUpdater.execute(taskEntity.id.value, Uuid.random().value, statusExpected);
+    await taskAccepter.execute(taskEntity.id.value, Uuid.random().value);
 
     const taskInDb = await taskRepository.search(new Uuid(taskEntity.id.value));
     expect(taskInDb?.status.value).toEqual(statusExpected);
