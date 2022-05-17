@@ -4,9 +4,9 @@ export function responseSuccess(res: Response, status?: number, dataBody?: any) 
   const statusCode = status || 200;
   const data = dataBody || '';
   res.status(statusCode).json({
-    error: false,
     status: statusCode,
-    data: data
+    data: data,
+    error: false
   });
 }
 

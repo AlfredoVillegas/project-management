@@ -8,3 +8,4 @@ project.sql
 project.sql-shm
 project.sql-wal
 ls.ts
+ss.env

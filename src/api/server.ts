@@ -1,7 +1,6 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import { EventBus } from '../modules/Shared/domain/EventBus';
-
 import { CheckApiEdpoints } from './CheckApiEndpoint';
 
 export class Server {
@@ -26,6 +25,7 @@ export class Server {
 
   initRoutes() {
     CheckApiEdpoints(this.app, this.apiPath);
+    //registerAuthRouters(this.app, this.apiPath);
   }
 
   initSubscribers() {}
