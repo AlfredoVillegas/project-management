@@ -1,7 +1,8 @@
 import cors from 'cors';
-import express, { Application } from 'express';
+import express, { Application, Router } from 'express';
 import { EventBus } from '../modules/Shared/domain/EventBus';
-import { CheckApiEdpoints } from './CheckApiEndpoint';
+import { registerAuthRouters } from './Auth/auth.route';
+import { registerCheckApiStatus } from './CheckApiStatus';
 
 export class Server {
   private app: Application;
@@ -24,8 +25,11 @@ export class Server {
   }
 
   initRoutes() {
-    CheckApiEdpoints(this.app, this.apiPath);
-    //registerAuthRouters(this.app, this.apiPath);
+    const router = Router();
+    this.app.use(this.apiPath, router);
+
+    registerCheckApiStatus(router);
+    registerAuthRouters(router);
   }
 
   initSubscribers() {}
