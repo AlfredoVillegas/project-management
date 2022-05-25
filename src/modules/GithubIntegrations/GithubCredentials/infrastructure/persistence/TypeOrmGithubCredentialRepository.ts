@@ -4,7 +4,7 @@ import { GithubCredential } from '../../domain/GithubCredential';
 import { GithubCredentialRepository } from '../../domain/GithubCredentialRepository';
 import { GithubCredentialsEntity } from './typeorm/GithubCredentialsEntity';
 
-export class TypeOrmProjectRepository implements GithubCredentialRepository {
+export class TypeOrmGithubCredentialRepository implements GithubCredentialRepository {
   private repository: Repository<GithubCredential>;
   constructor() {
     this.repository = getConnection().getRepository(GithubCredentialsEntity);

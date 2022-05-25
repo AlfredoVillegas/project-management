@@ -41,6 +41,6 @@ export class Task extends DomainEntity {
 
   public accept(collaborator: Uuid): void {
     this._status = new TaskStatus('accepted');
-    this.addDomainEvent(new TaskAcceptedDomainEvent(this.id.value, collaborator.value));
+    this.addDomainEvent(new TaskAcceptedDomainEvent(this.id.value, collaborator.value, this.projectId.value));
   }
 }

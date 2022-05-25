@@ -23,11 +23,10 @@ export class LoginGithubController {
       const githubCrendetialsRepository = getConnection().getRepository(GithubCredential);
       await githubCrendetialsRepository.update({ userId: user.id }, { githubToken: githubAccessToken });
 
-      // generar jwt propio
       const payload = {
         id: user.id.value
       };
-      // ponerle tiempo de caducidad al token
+
       const tokenJwt = jwt.sign(payload, process.env.SECRET_KEY || 'dev', {
         expiresIn: '24H'
       });

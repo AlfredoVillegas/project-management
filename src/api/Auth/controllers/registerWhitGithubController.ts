@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import { getConnection } from 'typeorm';
 import { GithubCredential } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredential';
+import { GithubCredentialUserName } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredentialUserName';
 import { Uuid } from '../../../modules/Shared/domain/value-object/Uuid';
 import { UserRegister } from '../../../modules/Users/application/UserRegister';
 import { responseError, responseSuccess } from '../../shared/network/response';
@@ -35,7 +36,9 @@ export class RegisterWhitGithubController {
       await this.userRegisterService.run(user);
 
       const githubCrendetialsRepository = getConnection().getRepository(GithubCredential);
-      const credential = new GithubCredential(userId, githubAccessToken);
+
+      const githubCredentialUserName = new GithubCredentialUserName(user.name);
+      const credential = new GithubCredential(userId, githubCredentialUserName, githubAccessToken);
       await githubCrendetialsRepository.insert(credential);
 
       const payload = {
