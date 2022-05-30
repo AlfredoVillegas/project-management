@@ -1,4 +1,4 @@
-import { Uuid } from '../../../Shared/domain/value-object/Uuid';
+import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
 import { Task } from '../../domain/Task';
 import { TaskRepository } from '../../domain/TaskRepository';
 

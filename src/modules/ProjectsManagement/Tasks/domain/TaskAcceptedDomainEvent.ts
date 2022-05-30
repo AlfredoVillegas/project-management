@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../Shared/domain/DomainEvent';
+import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 
 export class TaskAcceptedDomainEvent extends DomainEvent {
   static EVENT_NAME = 'task.accepted';

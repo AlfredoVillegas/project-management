@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../Shared/domain/DomainEvent';
+import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 
 export class TaskStatusUpdatedDomainEvent extends DomainEvent {
   static EVENT_NAME = 'task_status.updated';

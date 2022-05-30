@@ -1,5 +1,5 @@
 import { DomainEventReceiver } from '../../../../Shared/domain/DomainEventReceiver';
-import { TaskAcceptedDomainEvent } from '../../../../Tasks/domain/TaskAcceptedDomainEvent';
+import { TaskAcceptedDomainEvent } from '../../../../ProjectsManagement/Tasks/domain/TaskAcceptedDomainEvent';
 import { ForkCreator } from './ForkCreator';
 
 export class CreateForkOnTaskAccepted implements DomainEventReceiver<TaskAcceptedDomainEvent> {

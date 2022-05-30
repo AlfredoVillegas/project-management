@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from '../../Shared/domain/value-object/InvalidArgumentError';
+import { InvalidArgumentError } from '../../../Shared/domain/value-object/InvalidArgumentError';
 
 export class TaskStatus {
   readonly value: string;

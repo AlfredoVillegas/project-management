@@ -1,5 +1,5 @@
 import { EntitySchema, FindOperator } from 'typeorm';
-import { UuidTransformerOrm } from '../../../../Shared/percistence/typeorm/UuidTransformerOrm';
+import { UuidTransformerOrm } from '../../../../../Shared/percistence/typeorm/UuidTransformerOrm';
 import { Task } from '../../../domain/Task';
 import { TaskStatus } from '../../../domain/TaskStatus';
 

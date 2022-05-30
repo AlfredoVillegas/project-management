@@ -1,5 +1,5 @@
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
-import { TaskCreatorParams } from '../../../../src/modules/Tasks/application/TaskCreator';
+import { TaskCreatorParams } from '../../../../src/modules/ProjectsManagement/Tasks/application/TaskCreator';
 
 export function tasktDataForTest(): TaskCreatorParams {
   return {

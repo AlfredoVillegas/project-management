@@ -1,5 +1,5 @@
-import { DomainEntity } from '../../Shared/domain/Entity';
-import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import { DomainEntity } from '../../../Shared/domain/Entity';
+import { Uuid } from '../../../Shared/domain/value-object/Uuid';
 import { TaskAcceptedDomainEvent } from './TaskAcceptedDomainEvent';
 import { TaskCreatedDomainEvent } from './TaskCreatedDomainEvent';
 import { TaskStatus } from './TaskStatus';
