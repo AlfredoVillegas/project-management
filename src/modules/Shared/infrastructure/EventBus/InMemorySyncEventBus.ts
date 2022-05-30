@@ -9,7 +9,7 @@ export class InMemorySyncEventBus implements EventBus {
     this.receiversMap = new Map();
   }
 
-  public addSubscribe(receiver: DomainEventReceiver<DomainEvent>): void {
+  public addSubscriber(receiver: DomainEventReceiver<DomainEvent>): void {
     const eventsNames = receiver.susbcribedTo();
     eventsNames.map(eventName => this.subscribe(eventName, receiver));
   }
@@ -21,19 +21,6 @@ export class InMemorySyncEventBus implements EventBus {
       this.receiversMap.set(eventName, eventsRegistered);
     } else {
       this.receiversMap.set(eventName, [receiver]);
-    }
-  }
-
-  public async unsubscribe(receiver: DomainEventReceiver<DomainEvent>): Promise<void> {
-    const eventsNames = receiver.susbcribedTo();
-
-    for (let eventName of eventsNames) {
-      let eventsRegistered = this.receiversMap.get(eventName);
-
-      if (eventsRegistered) {
-        eventsRegistered = eventsRegistered.filter(event => event !== receiver);
-        this.receiversMap.set(eventName, eventsRegistered);
-      }
     }
   }
 

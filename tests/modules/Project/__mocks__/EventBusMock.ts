@@ -6,8 +6,8 @@ export class EventBusMock implements EventBus {
   private callsToPublishEvent = 0;
 
   constructor() {}
+  addSubscriber(receiver: DomainEventReceiver<DomainEvent>): void {}
 
-  addSubscribe(receiver: DomainEventReceiver<DomainEvent>): void {}
   unsubscribe(receiver: DomainEventReceiver<DomainEvent>): void {}
 
   async publish(events: DomainEvent[]): Promise<void> {

@@ -6,10 +6,10 @@ export class MockEventBus implements EventBus {
   private callsToPublishEvent = 0;
 
   constructor() {}
-
-  addSubscribe(receiver: DomainEventReceiver<DomainEvent>): void {
+  addSubscriber(receiver: DomainEventReceiver<DomainEvent>): void {
     console.log('addSubscribers');
   }
+
   unsubscribe(receiver: DomainEventReceiver<DomainEvent>): void {
     console.log('unSubscribers');
   }
