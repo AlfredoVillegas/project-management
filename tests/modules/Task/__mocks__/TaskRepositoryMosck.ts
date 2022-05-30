@@ -8,7 +8,7 @@ export class TaskRepositoryMock implements TaskRepository {
   private tasks: Task[] = [];
 
   static createEntityDomainFromDataTest(data: TaskCreatorParams): Task {
-    return new Task(new Uuid(data.id), data.name, data.description, new TaskStatus('created'), Uuid.random());
+    return new Task(new Uuid(data.id), data.name, data.description, new TaskStatus('todo'), Uuid.random());
   }
 
   async search(id: Uuid): Promise<Task | null | undefined> {
