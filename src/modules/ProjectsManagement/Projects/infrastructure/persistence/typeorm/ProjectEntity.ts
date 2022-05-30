@@ -1,6 +1,6 @@
 import { EntitySchema, FindOperator } from 'typeorm';
-import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
-import { UuidTransformerOrm } from '../../../../Shared/percistence/typeorm/UuidTransformerOrm';
+import { Uuid } from '../../../../../Shared/domain/value-object/Uuid';
+import { UuidTransformerOrm } from '../../../../../Shared/percistence/typeorm/UuidTransformerOrm';
 import { Project } from '../../../domain/Project';
 
 export const ProjectEntity = new EntitySchema<Project>({

@@ -1,4 +1,4 @@
-import { DomainEvent } from '../../Shared/domain/DomainEvent';
+import { DomainEvent } from '../../../Shared/domain/DomainEvent';
 
 export class ProjectCreatedDomainEvent extends DomainEvent {
   static EVENT_NAME = 'project.created';

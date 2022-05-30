@@ -1,5 +1,5 @@
-import { EventBus } from '../../Shared/domain/EventBus';
-import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import { EventBus } from '../../../Shared/domain/EventBus';
+import { Uuid } from '../../../Shared/domain/value-object/Uuid';
 import { ProjectRepository } from '../domain/ProjectRepository';
 import { ProjectFinder } from './Find/ProjectFinder';
 

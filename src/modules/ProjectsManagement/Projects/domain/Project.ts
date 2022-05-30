@@ -1,5 +1,5 @@
-import { DomainEntity } from '../../Shared/domain/Entity';
-import { Uuid } from '../../Shared/domain/value-object/Uuid';
+import { DomainEntity } from '../../../Shared/domain/Entity';
+import { Uuid } from '../../../Shared/domain/value-object/Uuid';
 import { ProjectCollaboratorsAddedDomainEvent } from './ProjectCollaboratorsAddedDomainEvent';
 import { ProjectCreatedDomainEvent } from './ProjectCreatedDomainEvent';
 

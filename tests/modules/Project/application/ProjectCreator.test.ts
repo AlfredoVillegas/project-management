@@ -1,5 +1,5 @@
-import { ProjectCreator } from '../../../../src/modules/Projects/application/ProjectCreator';
-import { Project } from '../../../../src/modules/Projects/domain/Project';
+import { ProjectCreator } from '../../../../src/modules/ProjectsManagement/Projects/application/ProjectCreator';
+import { Project } from '../../../../src/modules/ProjectsManagement/Projects/domain/Project';
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
 import { EventBusMock } from '../__mocks__/EventBusMock';
 import { projectDataForTest } from '../__mocks__/projectDataForTest';

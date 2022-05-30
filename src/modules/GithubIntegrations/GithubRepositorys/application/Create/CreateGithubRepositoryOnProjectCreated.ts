@@ -1,4 +1,4 @@
-import { ProjectCreatedDomainEvent } from '../../../../Projects/domain/ProjectCreatedDomainEvent';
+import { ProjectCreatedDomainEvent } from '../../../../ProjectsManagement/Projects/domain/ProjectCreatedDomainEvent';
 import { DomainEventReceiver } from '../../../../Shared/domain/DomainEventReceiver';
 import { GithubRepositoryCreator } from './GithubRepositoryCreator';
 

@@ -1,5 +1,5 @@
 import { getConnection, Like, Repository } from 'typeorm';
-import { Uuid } from '../../../Shared/domain/value-object/Uuid';
+import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
 import { Project } from '../../domain/Project';
 import { ProjectRepository } from '../../domain/ProjectRepository';
 import { ProjectEntity } from './typeorm/ProjectEntity';

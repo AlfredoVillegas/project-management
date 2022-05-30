@@ -1,4 +1,4 @@
-import { Uuid } from '../../../Shared/domain/value-object/Uuid';
+import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
 import { Project } from '../../domain/Project';
 import { ProjectNotExist } from '../../domain/ProjectNotExist';
 import { ProjectRepository } from '../../domain/ProjectRepository';
