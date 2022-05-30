@@ -2,16 +2,17 @@ import { InvalidArgumentError } from '../../Shared/domain/value-object/InvalidAr
 
 export class TaskStatus {
   readonly value: string;
-  private statusAllowed = ['created', 'accepted', 'completed'];
+  private statusAllowed = ['todo', 'accepted', 'completed'];
 
   constructor(value: string) {
-    this.isValid(value.toLowerCase());
-    this.value = value.toLowerCase();
+    const valueNormalized = value.toLowerCase();
+    this.isValid(valueNormalized);
+    this.value = valueNormalized;
   }
 
   private isValid(value: string) {
     if (!this.statusAllowed.includes(value)) {
-      throw new InvalidArgumentError(`Status '${value}' invalid, status allowed : 'created', 'accepted', 'completed' `);
+      throw new InvalidArgumentError(`Status '${value}' invalid, status allowed : 'todo', 'accepted', 'completed' `);
     }
   }
 }

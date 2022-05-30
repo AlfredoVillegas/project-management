@@ -28,7 +28,7 @@ export class Task extends DomainEntity {
   }
 
   static create(id: Uuid, name: string, description: string, projectId: Uuid): Task {
-    const status = new TaskStatus('created');
+    const status = new TaskStatus('todo');
     const task = new Task(id, name, description, status, projectId);
     task.addDomainEvent(new TaskCreatedDomainEvent(task.id.value, task.name, task.projectId.value));
     return task;
