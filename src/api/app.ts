@@ -1,16 +1,14 @@
 import { createConnection } from 'typeorm';
-import { InMemorySyncEventBus } from '../modules/Shared/infrastructure/EventBus/InMemorySyncEventBus';
-
 import { Server } from './server';
+import container from './shared/dependency-injection';
 
 (async () => {
-  console.log('Init: connection of TypeOrm for api');
+  await container.compile();
+
+  console.log('starting connection of TypeOrm for api');
   await createConnection();
 
-  console.log('Init: EventBuss');
-  const eventBus = new InMemorySyncEventBus();
-
-  console.log('Init: Server...');
-  const server = new Server(eventBus);
+  console.log('loading Server...');
+  const server = new Server();
   server.listen();
 })();

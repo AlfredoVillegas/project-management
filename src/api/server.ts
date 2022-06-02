@@ -1,19 +1,18 @@
 import cors from 'cors';
 import express, { Application, Router } from 'express';
-import { EventBus } from '../modules/Shared/domain/EventBus';
 import { registerAuthRouters } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
+import { registerProjectsRouter } from './ProjectsManagement/Projects/projects.route';
 
 export class Server {
   private app: Application;
   private port: string;
-  private eventBus: EventBus;
   readonly apiPath = '/api';
 
-  constructor(eventBus: EventBus) {
+  constructor() {
     this.app = express();
     this.port = process.env.PORT || '3000';
-    this.eventBus = eventBus;
+
     this.middlewares();
     this.initRoutes();
     this.initSubscribers();
@@ -30,6 +29,7 @@ export class Server {
 
     registerCheckApiStatus(router);
     registerAuthRouters(router);
+    registerProjectsRouter(router);
   }
 
   initSubscribers() {}

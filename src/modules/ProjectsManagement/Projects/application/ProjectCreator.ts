@@ -31,6 +31,6 @@ export class ProjectCreator {
 
     await this.repository.save(project);
 
-    return await this.eventBus.publish(project.extractDomainEvents());
+    await this.eventBus.publish(project.extractDomainEvents());
   }
 }
