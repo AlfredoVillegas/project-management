@@ -1,8 +1,8 @@
 import cors from 'cors';
 import express, { Application, Router } from 'express';
-import { registerAuthRouters } from './Auth/auth.route';
+import { registerAuthRoutes } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
-import { registerProjectsRouter } from './ProjectsManagement/Projects/projects.route';
+import { registerProjectsRoutes } from './ProjectsManagement/Projects/projects.route';
 
 export class Server {
   private app: Application;
@@ -28,8 +28,8 @@ export class Server {
     this.app.use(this.apiPath, router);
 
     registerCheckApiStatus(router);
-    registerAuthRouters(router);
-    registerProjectsRouter(router);
+    registerAuthRoutes(router);
+    registerProjectsRoutes(router);
   }
 
   initSubscribers() {}

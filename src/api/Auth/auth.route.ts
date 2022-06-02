@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { LoginGithubController } from './controllers/loginGithubController';
 
-export const registerAuthRouters = (router: Router) => {
+export const registerAuthRoutes = (router: Router) => {
   const loginController = new LoginGithubController();
   router.get(`/user/signin/callback`, (req: Request, res: Response) => loginController.execute(req, res));
 
