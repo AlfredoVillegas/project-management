@@ -3,6 +3,7 @@ import express, { Application, Router } from 'express';
 import { registerAuthRoutes } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
 import { registerProjectsRoutes } from './ProjectsManagement/Projects/projects.route';
+import { registerTasksRoutes } from './ProjectsManagement/Task/task.route';
 
 export class Server {
   private app: Application;
@@ -30,6 +31,7 @@ export class Server {
     registerCheckApiStatus(router);
     registerAuthRoutes(router);
     registerProjectsRoutes(router);
+    registerTasksRoutes(router);
   }
 
   initSubscribers() {}

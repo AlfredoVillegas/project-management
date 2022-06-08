@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node dist/src/api/app.js",
-    "dev": "ts-node src/api/app",
+    "start": "node dist/src/api/app",
+    "dev": "ts-node ./src/api/app.ts",
     "build": "npm run build:clean && npm run build:tsc",
     "build:tsc": "tsc -p tsconfig.prod.json",
     "build:clean": "rm -r dist; exit 0",
@@ -58,6 +58,7 @@
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.4.0",
+    "ts-node-dev": "^2.0.0",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0"
   }

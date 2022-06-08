@@ -43,4 +43,14 @@ export class Task extends DomainEntity {
     this._status = new TaskStatus('accepted');
     this.addDomainEvent(new TaskAcceptedDomainEvent(this.id.value, collaborator.value, this.projectId.value));
   }
+
+  public toPrimitives() {
+    return {
+      id: this.id.value,
+      name: this.name,
+      description: this.description,
+      status: this.status.value,
+      projectId: this.projectId.value
+    };
+  }
 }

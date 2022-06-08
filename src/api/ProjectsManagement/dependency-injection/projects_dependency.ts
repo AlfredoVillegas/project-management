@@ -1,7 +1,7 @@
 import { ContainerBuilder, Reference } from 'node-dependency-injection';
 import { AddCollaborators } from '../../../modules/ProjectsManagement/Projects/application/AddCollaborators';
 import { ProjectFinder } from '../../../modules/ProjectsManagement/Projects/application/Find/ProjectFinder';
-import { ProjectFinderByMember } from '../../../modules/ProjectsManagement/Projects/application/Find/ProjectsFinderByMember';
+import { ProjectsFinderByMember } from '../../../modules/ProjectsManagement/Projects/application/Find/ProjectsFinderByMember';
 import { ProjectCreator } from '../../../modules/ProjectsManagement/Projects/application/ProjectCreator';
 import { TypeOrmProjectRepository } from '../../../modules/ProjectsManagement/Projects/infrastructure/persistence/TypeOrmProjectRepository';
 
@@ -26,7 +26,7 @@ export function registerProjectsDependencys(container: ContainerBuilder) {
     .addArgument(projectRepositoryReference);
 
   container
-    .register('ProjectsManagement.projects.ProjectsFinderByMember', ProjectFinderByMember)
+    .register('ProjectsManagement.projects.ProjectsFinderByMember', ProjectsFinderByMember)
     .addArgument(projectRepositoryReference);
 }
 

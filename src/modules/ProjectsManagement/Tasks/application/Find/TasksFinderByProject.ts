@@ -8,7 +8,7 @@ export class TasksFinderByProject {
   public async execute(projectId: string): Promise<Task[]> {
     const tasks = await this.repository.searchAllsByProject(new Uuid(projectId));
     if (!tasks) {
-      throw new Error('task not found');
+      throw new Error('tasks not found');
     }
     return tasks;
   }

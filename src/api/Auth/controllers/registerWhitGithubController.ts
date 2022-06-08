@@ -14,7 +14,6 @@ export class RegisterWhitGithubController {
   constructor(private userRegisterService: UserRegister) {}
 
   async execute(req: Request, res: Response) {
-    console.log('register whit github...');
     const { code } = req.query;
 
     try {

@@ -13,14 +13,12 @@ type ProjectPostRequest = Request & {
 };*/
 
 export class ProjectPostController {
-  constructor(private projectCreator: ProjectCreator) {
-    console.log('porjeccttt post controller Construidoooooo ');
-  }
+  constructor(private projectCreator: ProjectCreator) {}
 
-  async run(req: Request, res: Response) {
-    console.log('porjeccttt post controller');
+  async execute(req: Request, res: Response) {
     try {
-      const { id, creator, description, name, collaboratorsIds } = req.body;
+      const creator = req.user;
+      const { id, description, name, collaboratorsIds } = req.body;
 
       await this.projectCreator.execute({ creator, description, id, name, collaboratorsIds });
 

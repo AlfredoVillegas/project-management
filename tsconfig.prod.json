@@ -104,4 +104,8 @@
   ],
   
   "exclude": ["node_modules","tests"],
-} 
+
+  //"files":  [
+  //  "src/api/shared/network/types.d.ts"
+  // ]
+}

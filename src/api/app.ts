@@ -3,6 +3,7 @@ import { Server } from './server';
 import container from './shared/dependency-injection';
 
 (async () => {
+  console.log('compiling Container dependencys');
   await container.compile();
 
   console.log('starting connection of TypeOrm for api');

@@ -1,7 +1,9 @@
 {
     "type": "better-sqlite3",
     "database": "./project.sql",
-    "entities" : ["**/src/modules/**/infrastructure/persistence/typeorm/*{.js,.ts}"],
+    "entities" : [
+        "**/src/modules/**/infrastructure/persistence/typeorm/*{.js,.ts}"
+        ],
     "synchronize" : true,
     "logging" :  true
     
