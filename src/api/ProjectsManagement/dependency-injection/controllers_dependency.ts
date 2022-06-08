@@ -7,7 +7,7 @@ import { TaskPostController } from '../Task/controllers/TaskPostController';
 import { TasksByProjectGetController } from '../Task/controllers/TasksByProjectGetController';
 import { TaskStatusPutController } from '../Task/controllers/TaskStatusPutController';
 
-export function registerProjectsControllersDependencys(container: ContainerBuilder) {
+export function registerProjectsManagementControllersDependencys(container: ContainerBuilder) {
   // Projects Controllers
   container
     .register('Api.ProjectsManagement.controllers.ProjectPostController', ProjectPostController)
