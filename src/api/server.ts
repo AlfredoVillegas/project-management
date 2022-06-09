@@ -16,15 +16,15 @@ export class Server {
 
     this.middlewares();
     this.initRoutes();
-    this.initSubscribers();
   }
-  middlewares() {
+
+  private middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
 
-  initRoutes() {
+  private initRoutes() {
     const router = Router();
     this.app.use(this.apiPath, router);
 
@@ -33,8 +33,6 @@ export class Server {
     registerProjectsRoutes(router);
     registerTasksRoutes(router);
   }
-
-  initSubscribers() {}
 
   async listen() {
     this.app.listen(this.port, () => {

@@ -10,7 +10,6 @@ export class InMemoryAsyncEventBus implements EventBus {
     console.log('Constructor Event Buss Async');
   }
   addSubscriber(receiver: DomainEventReceiver<DomainEvent>): void {
-    console.log('subcriber addddd');
     receiver.susbcribedTo().map(eventName =>
       this.eventEmitterBus.on(eventName, domainEvent => {
         setImmediate(receiver.receive.bind(receiver, domainEvent));

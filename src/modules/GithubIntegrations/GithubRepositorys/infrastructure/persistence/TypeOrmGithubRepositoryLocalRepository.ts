@@ -1,7 +1,7 @@
 import { getConnection, Repository } from 'typeorm';
 import { GithubRepositoryLocal } from '../../domain/GithubRepositoryLocal';
 import { GithubRepositoryLocalRepository } from '../../domain/GithubRepositoryLocalRepository';
-import { GithubRepositoryLocalSchema } from './TypeOrm/GithubRepositoryLocalEntity';
+import { GithubRepositoryLocalSchema } from './typeorm/GithubRepositoryLocalEntity';
 
 export class TypeOrmGithubRepositoryLocalRepository implements GithubRepositoryLocalRepository {
   private repository: Repository<GithubRepositoryLocal>;
