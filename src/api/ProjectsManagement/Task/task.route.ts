@@ -1,8 +1,11 @@
-import { Request, Response, Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
+import { verifyAuthToken } from '../../Auth/middelwares/VerifyAuthToken';
 import container from '../../shared/dependency-injection';
 import { TaskAccepterController } from './controllers/TaskAccepterController';
 
 export const registerTasksRoutes = (router: Router) => {
+  router.use('/tasks', (req: Request, res: Response, next: NextFunction) => verifyAuthToken(req, res, next));
+
   const taskPostController = container.get('Api.ProjectsManagement.controllers.TaskPostController');
   router.post(`/tasks`, (req: Request, res: Response) => taskPostController.execute(req, res));
 

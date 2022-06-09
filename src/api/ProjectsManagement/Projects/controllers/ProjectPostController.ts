@@ -17,7 +17,7 @@ export class ProjectPostController {
 
   async execute(req: Request, res: Response) {
     try {
-      const creator = 'e0fc7962-a18f-4961-9cbe-b28e8b4e1d51'; // req.user;
+      const creator = req.user;
       const { id, description, name, collaboratorsIds } = req.body;
 
       await this.projectCreator.execute({ creator, description, id, name, collaboratorsIds });
