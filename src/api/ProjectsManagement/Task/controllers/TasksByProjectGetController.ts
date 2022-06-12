@@ -6,7 +6,7 @@ export class TasksByProjectGetController {
   constructor(private finderByProjectService: TasksFinderByProject) {}
 
   async execute(req: Request, res: Response) {
-    const projectId = req.params.project_id;
+    const projectId = req.params.projectId;
     try {
       const tasks = await this.finderByProjectService.execute(projectId);
       const taskResponse = tasks.map(task => task.toPrimitives());

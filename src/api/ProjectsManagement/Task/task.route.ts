@@ -15,8 +15,8 @@ export const registerTasksRoutes = (router: Router) => {
   router.put(`/tasks/accept/:id`, (req: Request, res: Response) => taskAccepterController.execute(req, res));
 
   const taskStatusPutController = container.get('Api.ProjectsManagement.controllers.TaskStatusPutController');
-  router.put(`/tasks/update-status/:id`, (req: Request, res: Response) => taskStatusPutController.execute(req, res));
+  router.put(`/tasks/status/:id`, (req: Request, res: Response) => taskStatusPutController.execute(req, res));
 
   const tasksByProjectGetController = container.get('Api.ProjectsManagement.controllers.TasksByPojectGetController');
-  router.get(`/tasks/:project_id`, (req: Request, res: Response) => tasksByProjectGetController.execute(req, res));
+  router.get(`/tasks/:projectId`, (req: Request, res: Response) => tasksByProjectGetController.execute(req, res));
 };

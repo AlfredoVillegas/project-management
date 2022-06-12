@@ -8,7 +8,7 @@ export class TaskStatusPutController {
   constructor(private statusUpdaterService: TaskStatusUpdater) {}
 
   async execute(req: Request, res: Response) {
-    const collaboratorId = 'e0fc7962-a18f-4961-9cbe-b28e8b4e1d51'; // req.user;
+    const collaboratorId = req.user;
     const taskId = req.params.id;
     const status = req.body.status;
     try {

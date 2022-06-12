@@ -14,5 +14,5 @@ export const registerProjectsRoutes = (router: Router) => {
   const projectsByMemberGetController = container.get(
     'Api.ProjectsManagement.controllers.ProjectsByMemberGetController'
   );
-  router.get(`/projects/by-member`, (req: Request, res: Response) => projectsByMemberGetController.execute(req, res));
+  router.get(`/projects/me`, (req: Request, res: Response) => projectsByMemberGetController.execute(req, res));
 };
