@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import * as jwt from 'jsonwebtoken';
 import { getConnection } from 'typeorm';
 import { GithubCredential } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredential';
 import { GithubCredentialUserName } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredentialUserName';
 import { Uuid } from '../../../modules/Shared/domain/value-object/Uuid';
 import { UserRegister } from '../../../modules/Users/application/UserRegister';
 import { responseError, responseSuccess } from '../../shared/network/response';
+import { createToken } from '../services/createToken';
 import { getAccessToken } from '../services/getAccessToken';
 import { getGithubUserByAccessToken } from '../services/getGithubUserByAccessToken';
 
@@ -40,12 +40,9 @@ export class RegisterWhitGithubController {
       const credential = new GithubCredential(userId, githubCredentialUserName, githubAccessToken);
       await githubCrendetialsRepository.insert(credential);
 
-      const payload = {
-        id: userId.value
-      };
-      const tokenJwt = jwt.sign(payload, process.env.SECRET_KEY || 'dev', { expiresIn: '24h' });
+      const tokenJwt = createToken(userId.value);
 
-      return responseSuccess(res, 200, tokenJwt);
+      return responseSuccess(res, 200, { tokenJwt });
     } catch (error: any) {
       responseError(res, 401, error.message);
     }

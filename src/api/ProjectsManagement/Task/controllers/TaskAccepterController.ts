@@ -7,7 +7,7 @@ export class TaskAccepterController {
   constructor(private taskAccepterService: TaskAccepter) {}
 
   async execute(req: Request, res: Response) {
-    const { collaboratorId } = req.body;
+    const collaboratorId = req.user;
     const taskId = req.params.id;
 
     try {
