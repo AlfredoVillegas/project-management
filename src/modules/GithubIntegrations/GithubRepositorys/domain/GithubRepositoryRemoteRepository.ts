@@ -10,5 +10,4 @@ export interface GithubRepositoryRemoteRepository {
     accesToken: string,
     { repositoryName, ownerName }: { repositoryName: string; ownerName: string }
   ): Promise<void>;
-  createBranch(accesToken: string): Promise<void>;
 }

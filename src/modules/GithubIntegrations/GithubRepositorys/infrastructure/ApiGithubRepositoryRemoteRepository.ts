@@ -53,8 +53,4 @@ export class ApiGithubRepositoryRemoteRepository implements GithubRepositoryRemo
       this.getConfig(accessToken)
     );
   }
-
-  createBranch(accesToken: string): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
 }

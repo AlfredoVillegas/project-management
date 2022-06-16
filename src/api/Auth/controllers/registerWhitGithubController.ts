@@ -29,7 +29,7 @@ export class RegisterWhitGithubController {
       const user = {
         id: userId.value,
         githubId: githubUserData.id,
-        name: githubUserData.name,
+        name: githubUserData.login,
         email: githubUserData.email
       };
       await this.userRegisterService.run(user);
@@ -42,7 +42,7 @@ export class RegisterWhitGithubController {
 
       const tokenJwt = createToken(userId.value);
 
-      return responseSuccess(res, 200, { tokenJwt });
+      return responseSuccess(res, 200, { name: user.name, tokenJwt });
     } catch (error: any) {
       responseError(res, 401, error.message);
     }
