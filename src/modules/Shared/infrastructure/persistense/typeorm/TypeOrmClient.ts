@@ -17,7 +17,10 @@ function getConfig() {
       username: postgresConfig.username,
       password: postgresConfig.password,
       database: postgresConfig.database,
-      entities: [`${__dirname}/../../../../**/**/infrastructure/persistence/typeorm/*{.js,.ts}`]
+      entities: [`${__dirname}/../../../../**/**/infrastructure/persistence/typeorm/*{.js,.ts}`],
+      ssl: {
+        rejectUnauthorized: false
+      }
       //synchronize: true,
       //logging: true
     };
