@@ -10,5 +10,5 @@ export const registerAuthRoutes = (router: Router) => {
   router.get(`/auth/users/callback/`, (req: Request, res: Response) => loginController.execute(req, res));
 
   const registerController = container.get('Api.Auth.controllers.RegisterWhitGithubController');
-  router.get(`/auth/users/callback/signin`, (req: Request, res: Response) => registerController.execute(req, res));
+  router.get(`/auth/users/callback/signup`, (req: Request, res: Response) => registerController.execute(req, res));
 };

@@ -14,14 +14,14 @@
         <h3>Auht whit Github</h3>
         <br>
         <a
-         href="https://github.com/login/oauth/authorize?client_id=709bf7a449e55ef1c3d7&scope=user:email%20public_repo">
+         href="https://github.com/login/oauth/authorize?client_id=<%=githubClientId%>&scope=user:email%20public_repo">
          Login
         </a>
         <br>    
-        <a href="https://github.com/login/oauth/authorize?client_id=709bf7a449e55ef1c3d7&scope=user:email%20public_repo&redirect_uri=<%=host%>/auth/users/callback/signin">
+        <a href="https://github.com/login/oauth/authorize?client_id=<%=githubClientId%>&scope=user:email%20public_repo&redirect_uri=<%=redirect%>/auth/users/callback/signup">
             Register
         </a>
-        <h2> {{host}} --- <%=host%> </h2>
+        <h2> {{host}} --- <%=redirect%> </h2>
 
     </section>
 </body>
