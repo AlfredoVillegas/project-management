@@ -15,8 +15,10 @@
     "build:clean": "rm -r dist; exit 0",
     "test": "npm run test:unit",
     "test:unit": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "sync:typeorm:schema": "node dist/src/modules/Shared/infrastructure/persistense/typeorm/syncTypeOrmSchema"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AlfredoVillegas/project-management.git"

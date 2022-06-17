@@ -4,11 +4,11 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 import { postgresConfig } from './typeOrmConfig';
 
 export async function createTypeOrmClientConnection(): Promise<Connection> {
-  const connection = await createConnection(getConfig());
+  const connection = await createConnection(getDataBaseConfig());
   return connection;
 }
 
-function getConfig() {
+export function getDataBaseConfig() {
   if (process.env.NODE_ENV === 'production') {
     const productionConnection: PostgresConnectionOptions = {
       type: 'postgres',
