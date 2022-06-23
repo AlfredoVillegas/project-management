@@ -1,9 +1,10 @@
 import cors from 'cors';
-import express, { Application, Router } from 'express';
+import express, { Application, Request, Response, Router } from 'express';
 import { registerAuthRoutes } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
 import { registerProjectsRoutes } from './ProjectsManagement/Projects/projects.route';
 import { registerTasksRoutes } from './ProjectsManagement/Task/task.route';
+import swaggerUi from 'swagger-ui-express';
 
 export class Server {
   private app: Application;
@@ -24,7 +25,10 @@ export class Server {
     this.app.use(express.urlencoded({ extended: true }));
 
     this.app.engine('html', require('ejs').renderFile);
-    //this.app.set('view engine', 'ejs');
+
+    this.app.use('/api/docs', swaggerUi.serve, async (_req: Request, res: Response) => {
+      return res.send(swaggerUi.generateHTML(await import(__dirname + '/../../swagger.json')));
+    });
   }
 
   private initRoutes() {
