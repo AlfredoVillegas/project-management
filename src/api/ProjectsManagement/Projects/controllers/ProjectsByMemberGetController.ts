@@ -3,6 +3,14 @@ import { ProjectsFinderByMember } from '../../../../modules/ProjectsManagement/P
 import { ProjectNotExist } from '../../../../modules/ProjectsManagement/Projects/domain/ProjectNotExist';
 import { responseError, responseSuccess } from '../../../shared/network/response';
 
+export interface ProjectResponse {
+  id: string;
+  name: string;
+  description: string;
+  creator: string;
+  collaboratorsIds: string[];
+}
+
 export class ProjectsByMemberGetController {
   constructor(private finderByMemberService: ProjectsFinderByMember) {}
 

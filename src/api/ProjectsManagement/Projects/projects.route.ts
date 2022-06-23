@@ -9,7 +9,9 @@ export const registerProjectsRoutes = (router: Router) => {
   router.post(`/projects`, (req: Request, res: Response) => projectPostController.execute(req, res));
 
   const addCollaboratorsController = container.get('Api.ProjectsManagement.controllers.AddCollaboratorsController');
-  router.post(`/projects/collaborators`, (req: Request, res: Response) => addCollaboratorsController.execute(req, res));
+  router.post(`/projects/:projectId/collaborators`, (req: Request, res: Response) =>
+    addCollaboratorsController.execute(req, res)
+  );
 
   const projectsByMemberGetController = container.get(
     'Api.ProjectsManagement.controllers.ProjectsByMemberGetController'
