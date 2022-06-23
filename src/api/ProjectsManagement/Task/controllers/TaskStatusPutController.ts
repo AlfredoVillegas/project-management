@@ -4,13 +4,17 @@ import { TaskNotExist } from '../../../../modules/ProjectsManagement/Tasks/domai
 import { InvalidArgumentError } from '../../../../modules/Shared/domain/value-object/InvalidArgumentError';
 import { responseError, responseSuccess } from '../../../shared/network/response';
 
+export interface TaskStatusPutBody {
+  status: 'todo' | 'completed';
+}
+
 export class TaskStatusPutController {
   constructor(private statusUpdaterService: TaskStatusUpdater) {}
 
   async execute(req: Request, res: Response) {
     const collaboratorId = req.user;
     const taskId = req.params.id;
-    const status = req.body.status;
+    const { status } = req.body as TaskStatusPutBody;
     try {
       await this.statusUpdaterService.execute(taskId, collaboratorId, status);
       responseSuccess(res, 200);

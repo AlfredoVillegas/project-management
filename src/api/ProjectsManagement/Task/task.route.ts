@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { verifyAuthToken } from '../../Auth/middelwares/VerifyAuthToken';
 import container from '../../shared/dependency-injection';
+
 import { TaskAccepterController } from './controllers/TaskAccepterController';
 
 export const registerTasksRoutes = (router: Router) => {
@@ -12,10 +13,10 @@ export const registerTasksRoutes = (router: Router) => {
   const taskAccepterController: TaskAccepterController = container.get(
     'Api.ProjectsManagement.controllers.TaskAccepterController'
   );
-  router.put(`/tasks/accept/:id`, (req: Request, res: Response) => taskAccepterController.execute(req, res));
+  router.put(`/tasks/:id/accept`, (req: Request, res: Response) => taskAccepterController.execute(req, res));
 
   const taskStatusPutController = container.get('Api.ProjectsManagement.controllers.TaskStatusPutController');
-  router.put(`/tasks/status/:id`, (req: Request, res: Response) => taskStatusPutController.execute(req, res));
+  router.put(`/tasks/:id/status`, (req: Request, res: Response) => taskStatusPutController.execute(req, res));
 
   const tasksByProjectGetController = container.get('Api.ProjectsManagement.controllers.TasksByPojectGetController');
   router.get(`/tasks/:projectId`, (req: Request, res: Response) => tasksByProjectGetController.execute(req, res));
