@@ -9,13 +9,16 @@ export class TypeOrmProjectRepository implements ProjectRepository {
   constructor() {
     this.repository = getConnection().getRepository(ProjectEntity);
   }
+
   async save(project: Project): Promise<void> {
     await this.repository.save(project);
   }
+
   async search(): Promise<Project[] | null | undefined> {
     const projects = await this.repository.find();
     return projects;
   }
+
   async searchByMember(Member: Uuid): Promise<Project[] | null | undefined> {
     const projects = await this.repository.find({
       where: [{ creator: Like(`%${Member.value}%`) }, { collaboratorsIds: Like(`%${Member.value}%`) }]
@@ -26,5 +29,9 @@ export class TypeOrmProjectRepository implements ProjectRepository {
   async searchOneBy(id: Uuid): Promise<Project | null | undefined> {
     const project = await this.repository.findOne({ id });
     return project;
+  }
+
+  async delete(id: Uuid): Promise<void> {
+    await this.repository.delete({ id });
   }
 }

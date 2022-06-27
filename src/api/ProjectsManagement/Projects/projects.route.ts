@@ -8,6 +8,9 @@ export const registerProjectsRoutes = (router: Router) => {
   const projectPostController = container.get('Api.ProjectsManagement.controllers.ProjectPostController');
   router.post(`/projects`, (req: Request, res: Response) => projectPostController.execute(req, res));
 
+  const projectPutController = container.get('Api.ProjectsManagement.controllers.ProjectPutController');
+  router.put(`/projects/:projectId`, (req: Request, res: Response) => projectPutController.execute(req, res));
+
   const addCollaboratorsController = container.get('Api.ProjectsManagement.controllers.AddCollaboratorsController');
   router.post(`/projects/:projectId/collaborators`, (req: Request, res: Response) =>
     addCollaboratorsController.execute(req, res)
@@ -17,4 +20,7 @@ export const registerProjectsRoutes = (router: Router) => {
     'Api.ProjectsManagement.controllers.ProjectsByMemberGetController'
   );
   router.get(`/projects/me`, (req: Request, res: Response) => projectsByMemberGetController.execute(req, res));
+
+  const projectDeleteController = container.get('Api.ProjectsManagement.controllers.ProjectDeleteController');
+  router.delete(`/projects/:projectId`, (req: Request, res: Response) => projectDeleteController.execute(req, res));
 };

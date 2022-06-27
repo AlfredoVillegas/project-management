@@ -34,6 +34,10 @@ export class Project extends DomainEntity {
     return project;
   }
 
+  public hasCreatePermission(userId: Uuid): boolean {
+    return this.creator.value === userId.value;
+  }
+
   public addCollaborators(collaborators: Uuid[]): void {
     collaborators.forEach(element => {
       this.collaboratorsIds.push(element);
