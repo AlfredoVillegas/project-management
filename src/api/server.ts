@@ -1,10 +1,11 @@
 import cors from 'cors';
 import express, { Application, Request, Response, Router } from 'express';
+import swaggerUi from 'swagger-ui-express';
 import { registerAuthRoutes } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
 import { registerProjectsRoutes } from './ProjectsManagement/Projects/projects.route';
 import { registerTasksRoutes } from './ProjectsManagement/Task/task.route';
-import swaggerUi from 'swagger-ui-express';
+import { registerUsersRoutes } from './Users/users.route';
 
 export class Server {
   private app: Application;
@@ -39,6 +40,7 @@ export class Server {
     registerAuthRoutes(router);
     registerProjectsRoutes(router);
     registerTasksRoutes(router);
+    registerUsersRoutes(router);
   }
 
   async listen() {

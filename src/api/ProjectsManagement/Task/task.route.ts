@@ -10,6 +10,9 @@ export const registerTasksRoutes = (router: Router) => {
   const taskPostController = container.get('Api.ProjectsManagement.controllers.TaskPostController');
   router.post(`/tasks`, (req: Request, res: Response) => taskPostController.execute(req, res));
 
+  const taskPutController = container.get('Api.ProjectsManagement.controllers.TaskPutController');
+  router.put(`/tasks/:taskId`, (req: Request, res: Response) => taskPutController.execute(req, res));
+
   const taskAccepterController: TaskAccepterController = container.get(
     'Api.ProjectsManagement.controllers.TaskAccepterController'
   );
@@ -20,4 +23,7 @@ export const registerTasksRoutes = (router: Router) => {
 
   const tasksByProjectGetController = container.get('Api.ProjectsManagement.controllers.TasksByPojectGetController');
   router.get(`/tasks/:projectId`, (req: Request, res: Response) => tasksByProjectGetController.execute(req, res));
+
+  const taskDeleteController = container.get('Api.ProjectsManagement.controllers.TaskDeleteController');
+  router.delete(`/tasks/:taskId`, (req: Request, res: Response) => taskDeleteController.execute(req, res));
 };

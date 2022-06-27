@@ -9,6 +9,7 @@ export class TypeOrmTaskRepository implements TaskRepository {
   constructor() {
     this.repository = getConnection().getRepository(TaskEntitySchema);
   }
+
   async save(task: Task): Promise<void> {
     await this.repository.save(task);
   }
@@ -19,5 +20,9 @@ export class TypeOrmTaskRepository implements TaskRepository {
   async searchAllsByProject(projectId: Uuid): Promise<Task[] | null | undefined> {
     const tasks = await this.repository.find({ projectId: projectId });
     return tasks;
+  }
+
+  async delete(id: Uuid): Promise<void> {
+    await this.repository.delete({ id: id });
   }
 }
