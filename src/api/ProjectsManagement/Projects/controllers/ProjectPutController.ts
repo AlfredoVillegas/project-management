@@ -21,7 +21,7 @@ export class ProjectPutController {
       res.status(201).send();
     } catch (error) {
       if (error instanceof NotHaveCreatePermission) {
-        responseError(res, 401, error.message);
+        return responseError(res, 401, error.message);
       }
       responseError(res);
     }

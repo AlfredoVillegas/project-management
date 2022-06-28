@@ -9,7 +9,16 @@ export class TypeOrmGithubCredentialRepository implements GithubCredentialReposi
   constructor() {
     this.repository = getConnection().getRepository(GithubCredentialsEntity);
   }
+
+  async save(githubCredential: GithubCredential): Promise<void> {
+    await this.repository.save(githubCredential);
+  }
+
   async findByUser(userId: Uuid): Promise<GithubCredential | null | undefined> {
     return await this.repository.findOne({ userId });
+  }
+
+  async updateToken(userId: Uuid, githubToken: string): Promise<void> {
+    await this.repository.update({ userId: userId }, { githubToken });
   }
 }

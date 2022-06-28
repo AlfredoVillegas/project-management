@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import { getConnection } from 'typeorm';
-import { GithubCredential } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredential';
-import { GithubCredentialUserName } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredentialUserName';
+import { GithubCredentialCreator } from '../../../modules/GithubIntegrations/GithubCredentials/application/GithubCredentialCreator';
 import { Uuid } from '../../../modules/Shared/domain/value-object/Uuid';
 import { UserRegister } from '../../../modules/UserAccess/Users/application/UserRegister';
 import { responseError, responseSuccess } from '../../shared/network/response';
@@ -11,7 +9,7 @@ import { getAccessToken } from '../services/getAccessToken';
 import { getGithubUserByAccessToken } from '../services/getGithubUserByAccessToken';
 
 export class RegisterWhitGithubController {
-  constructor(private userRegisterService: UserRegister) {}
+  constructor(private userRegisterService: UserRegister, private githubCredentialCreator: GithubCredentialCreator) {}
 
   async execute(req: Request, res: Response) {
     const { code } = req.query;
@@ -34,14 +32,13 @@ export class RegisterWhitGithubController {
       };
       await this.userRegisterService.run(user);
 
-      const githubCrendetialsRepository = getConnection().getRepository(GithubCredential);
-
-      const githubCredentialUserName = new GithubCredentialUserName(user.name);
-      const credential = new GithubCredential(userId, githubCredentialUserName, githubAccessToken);
-      await githubCrendetialsRepository.insert(credential);
+      await this.githubCredentialCreator.execute({
+        userId: userId,
+        userName: user.name,
+        githubAccessToken: githubAccessToken
+      });
 
       const tokenJwt = createToken(userId.value);
-
       return responseSuccess(res, 200, { name: user.name, tokenJwt });
     } catch (error: any) {
       responseError(res, 401, error.message);

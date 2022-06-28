@@ -20,7 +20,7 @@ export class TaskPutController {
       res.status(200).send();
     } catch (error) {
       if (error instanceof TaskNotExist) {
-        responseError(res, 404, error.message);
+        return responseError(res, 404, error.message);
       }
       responseError(res);
     }

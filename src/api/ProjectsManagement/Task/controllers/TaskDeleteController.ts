@@ -15,7 +15,7 @@ export class TaskDeleteController {
       res.status(201).send();
     } catch (error) {
       if (error instanceof TaskNotExist) {
-        responseError(res, 404, error.message);
+        return responseError(res, 404, error.message);
       }
       responseError(res);
     }
