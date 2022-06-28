@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { UserDeleter } from '../../../modules/Users/application/UserDeleter';
-import { UserNotExist } from '../../../modules/Users/domain/Errors';
-import { responseError, responseSuccess } from '../../shared/network/response';
+import { UserDeleter } from '../../../../modules/UserAccess/Users/application/UserDeleter';
+import { UserNotExist } from '../../../../modules/UserAccess/Users/domain/Errors';
+import { responseError, responseSuccess } from '../../../shared/network/response';
 
 export class UserDeleterController {
   constructor(private userDeleterService: UserDeleter) {}

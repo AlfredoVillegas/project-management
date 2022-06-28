@@ -23,4 +23,8 @@ export class TaskRepositoryMock implements TaskRepository {
   async save(project: Task): Promise<void> {
     this.tasks.push(project);
   }
+
+  async delete(id: Uuid): Promise<void> {
+    this.tasks.pop();
+  }
 }

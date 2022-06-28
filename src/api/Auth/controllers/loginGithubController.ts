@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { getConnection } from 'typeorm';
 import { GithubCredential } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredential';
-import { User } from '../../../modules/Users/domain/User';
+import { User } from '../../../modules/UserAccess/Users/domain/User';
 import { responseError, responseSuccess } from '../../shared/network/response';
 import { createToken } from '../services/createToken';
 import { getAccessToken } from '../services/getAccessToken';

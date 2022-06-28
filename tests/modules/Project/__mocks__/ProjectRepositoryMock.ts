@@ -29,4 +29,8 @@ export class ProjectRepositoryMock implements ProjectRepository {
   async searchOneBy(id: Uuid): Promise<Project | null | undefined> {
     return this.projects.find(project => project.id.value === id.value);
   }
+
+  async delete(id: Uuid): Promise<void> {
+    this.projects.pop();
+  }
 }

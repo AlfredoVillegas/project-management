@@ -1,7 +1,7 @@
-import { UserRegister } from '../../../../src/modules/Users/application/UserRegister';
-import { UserEmailAlreadyExists } from '../../../../src/modules/Users/domain/Errors';
-import { User } from '../../../../src/modules/Users/domain/User';
-import { UserId } from '../../../../src/modules/Users/domain/UserId';
+import { UserRegister } from '../../../../src/modules/UserAccess/Users/application/UserRegister';
+import { UserEmailAlreadyExists } from '../../../../src/modules/UserAccess/Users/domain/Errors';
+import { User } from '../../../../src/modules/UserAccess/Users/domain/User';
+import { UserId } from '../../../../src/modules/UserAccess/Users/domain/UserId';
 import { MockEventBus } from '../__mocks__/MockEventBus';
 import { MockUserRepository } from '../__mocks__/MockUserRepository';
 

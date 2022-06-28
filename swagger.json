@@ -1,0 +1,639 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"UUID_STRING": {
+				"type": "string",
+				"format": "uuid",
+				"description": "Stringified UUIDv4.\nSee [RFC 4112](https://tools.ietf.org/html/rfc4122)",
+				"pattern": "[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}"
+			},
+			"ProjectPostBody": {
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/UUID_STRING"
+					},
+					"name": {
+						"type": "string"
+					},
+					"collaboratorsIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProjectPutBody": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AddCollaboratorsRequestBody": {
+				"properties": {
+					"collaborators": {
+						"items": {
+							"$ref": "#/components/schemas/UUID_STRING"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"collaborators"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProjectResponse": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"creator": {
+						"type": "string"
+					},
+					"collaboratorsIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"creator",
+					"collaboratorsIds"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskPostBody": {
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/UUID_STRING"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"projectId": {
+						"$ref": "#/components/schemas/UUID_STRING"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"projectId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskPutBody": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskStatusPutBody": {
+				"properties": {
+					"status": {
+						"type": "string",
+						"enum": [
+							"todo",
+							"completed"
+						]
+					}
+				},
+				"required": [
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskResponse": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"status": {
+						"type": "string"
+					},
+					"projectId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"description",
+					"status",
+					"projectId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserResponse": {
+				"properties": {
+					"id": {
+						"$ref": "#/components/schemas/UUID_STRING"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"jwt": {
+				"type": "http",
+				"scheme": "bearer"
+			}
+		}
+	},
+	"info": {
+		"title": "Promag:project-management",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/": {
+			"get": {
+				"operationId": "IndexController",
+				"responses": {
+					"200": {
+						"description": "HTML render"
+					}
+				},
+				"description": "Return html with url to register or login with Github",
+				"tags": [
+					"Auth"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/projects": {
+			"post": {
+				"operationId": "ProjectPostController",
+				"responses": {
+					"201": {
+						"description": "Created"
+					}
+				},
+				"tags": [
+					"Projects"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProjectPostBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/projects/{projectId}": {
+			"put": {
+				"operationId": "ProjectPutController",
+				"responses": {
+					"200": {
+						"description": "Updated"
+					}
+				},
+				"tags": [
+					"Projects"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ProjectPutBody"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "ProjectDeleteController",
+				"responses": {
+					"200": {
+						"description": "deleted"
+					}
+				},
+				"tags": [
+					"Projects"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/projects/{projectId}/collaborators": {
+			"post": {
+				"operationId": "AddCollaboratorsController",
+				"responses": {
+					"200": {
+						"description": "ok"
+					}
+				},
+				"tags": [
+					"Projects"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AddCollaboratorsRequestBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/projects/me": {
+			"get": {
+				"operationId": "ProjectsByMemberGetController",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ProjectResponse"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Projects"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/tasks": {
+			"post": {
+				"operationId": "TaskPostController",
+				"responses": {
+					"201": {
+						"description": "Created"
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TaskPostBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tasks/{taskId}": {
+			"put": {
+				"operationId": "TaskPutController",
+				"responses": {
+					"200": {
+						"description": "Updated"
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TaskPutBody"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "ProjectDeleteController",
+				"responses": {
+					"200": {
+						"description": "deleted"
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/tasks/{id}/status": {
+			"put": {
+				"operationId": "TaskStatusPutController",
+				"responses": {
+					"200": {
+						"description": "ok"
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TaskStatusPutBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tasks/{id}/accept": {
+			"put": {
+				"operationId": "TaskAccepterController",
+				"responses": {
+					"200": {
+						"description": "ok"
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/tasks/{projectId}": {
+			"get": {
+				"operationId": "TaskByMemberGetController",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/TaskResponse"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users/me": {
+			"get": {
+				"operationId": "UserGetController",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			},
+			"delete": {
+				"operationId": "UserDeleterController",
+				"responses": {
+					"200": {
+						"description": "Deleted"
+					}
+				},
+				"tags": [
+					"Users"
+				],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/api"
+		}
+	]
+}

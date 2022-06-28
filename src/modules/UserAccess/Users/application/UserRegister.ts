@@ -1,4 +1,4 @@
-import { EventBus } from '../../Shared/domain/EventBus';
+import { EventBus } from '../../../Shared/domain/EventBus';
 import { UserEmailAlreadyExists } from '../domain/Errors';
 import { User } from '../domain/User';
 import { UserEmail } from '../domain/UserEmail';

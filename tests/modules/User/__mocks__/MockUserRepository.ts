@@ -1,10 +1,10 @@
 import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
-import { userRegisterParams } from '../../../../src/modules/Users/application/UserRegister';
-import { User } from '../../../../src/modules/Users/domain/User';
-import { UserEmail } from '../../../../src/modules/Users/domain/UserEmail';
-import { UserId } from '../../../../src/modules/Users/domain/UserId';
-import { UserName } from '../../../../src/modules/Users/domain/UserName';
-import { UserRepository } from '../../../../src/modules/Users/domain/UserRepository';
+import { userRegisterParams } from '../../../../src/modules/UserAccess/Users/application/UserRegister';
+import { User } from '../../../../src/modules/UserAccess/Users/domain/User';
+import { UserEmail } from '../../../../src/modules/UserAccess/Users/domain/UserEmail';
+import { UserId } from '../../../../src/modules/UserAccess/Users/domain/UserId';
+import { UserName } from '../../../../src/modules/UserAccess/Users/domain/UserName';
+import { UserRepository } from '../../../../src/modules/UserAccess/Users/domain/UserRepository';
 
 export class MockUserRepository implements UserRepository {
   private userDomain: User | null = null;

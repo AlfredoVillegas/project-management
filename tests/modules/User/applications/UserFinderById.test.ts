@@ -1,4 +1,4 @@
-import { UserFinderById } from '../../../../src/modules/Users/application/UserFinderById';
+import { UserFinderById } from '../../../../src/modules/UserAccess/Users/application/UserFinderById';
 import { MockUserRepository } from '../__mocks__/MockUserRepository';
 
 let userRepositoryMock: MockUserRepository;

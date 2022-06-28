@@ -5,7 +5,7 @@ import { registerAuthRoutes } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
 import { registerProjectsRoutes } from './ProjectsManagement/Projects/projects.route';
 import { registerTasksRoutes } from './ProjectsManagement/Task/task.route';
-import { registerUsersRoutes } from './Users/users.route';
+import { registerUsersRoutes } from './UserAccess/Users/users.route';
 
 export class Server {
   private app: Application;

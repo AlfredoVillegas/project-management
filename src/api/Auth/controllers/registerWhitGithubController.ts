@@ -4,7 +4,7 @@ import { getConnection } from 'typeorm';
 import { GithubCredential } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredential';
 import { GithubCredentialUserName } from '../../../modules/GithubIntegrations/GithubCredentials/domain/GithubCredentialUserName';
 import { Uuid } from '../../../modules/Shared/domain/value-object/Uuid';
-import { UserRegister } from '../../../modules/Users/application/UserRegister';
+import { UserRegister } from '../../../modules/UserAccess/Users/application/UserRegister';
 import { responseError, responseSuccess } from '../../shared/network/response';
 import { createToken } from '../services/createToken';
 import { getAccessToken } from '../services/getAccessToken';

@@ -1,5 +1,5 @@
-import { UserDeleter } from '../../../../src/modules/Users/application/UserDeleter';
-import { UserId } from '../../../../src/modules/Users/domain/UserId';
+import { UserDeleter } from '../../../../src/modules/UserAccess/Users/application/UserDeleter';
+import { UserId } from '../../../../src/modules/UserAccess/Users/domain/UserId';
 import { MockUserRepository } from '../__mocks__/MockUserRepository';
 
 let userDeleter: UserDeleter;

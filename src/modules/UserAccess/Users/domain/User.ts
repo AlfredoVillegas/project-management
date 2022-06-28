@@ -1,4 +1,4 @@
-import { DomainEntity } from '../../Shared/domain/Entity';
+import { DomainEntity } from '../../../Shared/domain/Entity';
 import { UserEmail } from './UserEmail';
 import { UserId } from './UserId';
 import { UserName } from './UserName';
