@@ -19,7 +19,7 @@ describe('Test of ProjectCreator', () => {
   it('should create a valid Project', async () => {
     const projectData = projectDataForTest();
 
-    await pojectCreator.execute({ ...projectData });
+    await pojectCreator.execute(projectData);
 
     const projectInDb = await projectRepository.searchOneBy(new Uuid(projectData.id));
 
