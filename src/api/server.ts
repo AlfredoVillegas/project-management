@@ -1,8 +1,10 @@
 import cors from 'cors';
-import express, { Application, Request, Response, Router } from 'express';
+import express, { Application, Request, Response } from 'express';
+import Router from 'express-promise-router';
 import swaggerUi from 'swagger-ui-express';
 import { registerAuthRoutes } from './Auth/auth.route';
 import { registerCheckApiStatus } from './CheckApiStatus';
+import { registerChecklistsRoutes } from './ProjectsManagement/Checklists/checklists.route';
 import { registerProjectsRoutes } from './ProjectsManagement/Projects/projects.route';
 import { registerTasksRoutes } from './ProjectsManagement/Task/task.route';
 import { registerUsersRoutes } from './UserAccess/Users/users.route';
@@ -41,6 +43,13 @@ export class Server {
     registerProjectsRoutes(router);
     registerTasksRoutes(router);
     registerUsersRoutes(router);
+    registerChecklistsRoutes(router);
+
+    router.use((err: Error, req: Request, res: Response, next: Function) => {
+      //'error handler General'
+      // this.logger.error(err);
+      res.status(500).send('Internal server error');
+    });
   }
 
   async listen() {
