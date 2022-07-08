@@ -1,7 +1,7 @@
 import { ChecklistRepository } from '../../domain/ChecklistRepository';
 import { ChecklistFinder } from '../Find/ChecklistFinder';
 
-export class ChecklistItemRenamer {
+export class ChecklistRenamer {
   private checklistFinder: ChecklistFinder;
   private respository: ChecklistRepository;
 

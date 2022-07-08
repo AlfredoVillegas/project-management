@@ -10,6 +10,7 @@ import { TaskPostController } from '../Task/controllers/TaskPostController';
 import { TaskPutController } from '../Task/controllers/TaskPutController';
 import { TasksByProjectGetController } from '../Task/controllers/TasksByProjectGetController';
 import { TaskStatusPutController } from '../Task/controllers/TaskStatusPutController';
+import { registerChecklistControllersDependencies } from './checklists_dependencies';
 
 export function registerProjectsManagementControllersDependencys(container: ContainerBuilder) {
   // Projects Controllers
@@ -57,4 +58,7 @@ export function registerProjectsManagementControllersDependencys(container: Cont
   container
     .register('Api.ProjectsManagement.controllers.TaskDeleteController', TaskDeleteController)
     .addArgument(new Reference('ProjectsManagement.tasks.TaskDeleter'));
+
+  //Checklist Controllers
+  registerChecklistControllersDependencies(container);
 }

@@ -39,6 +39,26 @@ export class Checklist extends DomainEntity {
     this.name = newName;
   }
 
+  public removeItem(itemId: Uuid) {
+    const indexItemToDelete = this.findIndexItemOrFail(itemId);
+
+    if (this.items[indexItemToDelete]._isVerified) {
+      this.totalItemsVerified -= 1;
+    }
+
+    this.items.splice(indexItemToDelete, 1);
+
+    this.recalculateAdvancedPercentage();
+  }
+
+  private findIndexItemOrFail(itemId: Uuid) {
+    const indexItem = this.items.findIndex(item => item.id.value === itemId.value);
+    if (indexItem === -1) {
+      throw new ChecklistItemNotFound(itemId);
+    }
+    return indexItem;
+  }
+
   public markAnItemAsVerifiedOrUnverified(itemId: Uuid, isVerified: boolean): void {
     const item = this.findItemOrFail(itemId);
 
@@ -65,14 +85,27 @@ export class Checklist extends DomainEntity {
   }
 
   public addChecklistItem(checklistItemId: Uuid, name: string): void {
-    const item = ChecklistItem.create(checklistItemId, name);
-    this.items.push(item);
+    const itemExists = this.itemExists(checklistItemId);
+    if (!itemExists) {
+      const item = ChecklistItem.create(checklistItemId, name);
+      this.items.push(item);
 
-    this.recalculateAdvancedPercentage();
+      this.recalculateAdvancedPercentage();
+    }
+  }
+
+  private itemExists(checklistItemId: Uuid): boolean {
+    const exists = this.items.find(item => item.id.value === checklistItemId.value);
+    return exists !== undefined;
   }
 
   private recalculateAdvancedPercentage() {
     const totalItems = this.items.length;
+    if (totalItems === 0) {
+      this.advancedPercentage = 0;
+      return;
+    }
+
     this.advancedPercentage = (this.totalItemsVerified * 100) / totalItems;
   }
 

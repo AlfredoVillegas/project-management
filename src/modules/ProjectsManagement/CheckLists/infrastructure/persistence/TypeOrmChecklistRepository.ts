@@ -3,6 +3,7 @@ import { Uuid } from '../../../../Shared/domain/value-object/Uuid';
 import { Checklist } from '../../domain/Checklist';
 import { ChecklistRepository } from '../../domain/ChecklistRepository';
 import { ChecklistEntity } from './typeorm/ChecklistEntity';
+import { ChecklistItemEntity } from './typeorm/ChecklistItemEntity';
 
 export class TypeOrmChecklistRepository implements ChecklistRepository {
   private repository: Repository<Checklist>;
@@ -12,6 +13,15 @@ export class TypeOrmChecklistRepository implements ChecklistRepository {
 
   async save(checklist: Checklist): Promise<void> {
     await this.repository.save(checklist);
+  }
+
+  async delete(checklistId: Uuid): Promise<void> {
+    this.repository.delete({ id: checklistId });
+  }
+
+  async deleteItem(checklistItemId: Uuid): Promise<void> {
+    const itemRepository = getConnection().getRepository(ChecklistItemEntity);
+    await itemRepository.delete({ id: checklistItemId });
   }
 
   async search(id: Uuid): Promise<Checklist | null | undefined> {

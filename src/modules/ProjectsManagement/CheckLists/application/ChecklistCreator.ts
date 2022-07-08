@@ -1,17 +1,18 @@
+import { UUID_STRING } from '../../../../api/shared/types';
 import { Uuid } from '../../../Shared/domain/value-object/Uuid';
 import { Checklist } from '../domain/Checklist';
 import { ChecklistItem } from '../domain/ChecklistItem';
 import { ChecklistRepository } from '../domain/ChecklistRepository';
 
 export interface ChecklistCreatorParams {
-  id: string;
+  id: UUID_STRING;
   name: string;
   taskId: string;
   items?: ChecklistItemCreatorParams[];
 }
 
 interface ChecklistItemCreatorParams {
-  id: string;
+  id: UUID_STRING;
   title: string;
 }
 
