@@ -30,7 +30,7 @@ export class Server {
     this.app.engine('html', require('ejs').renderFile);
 
     this.app.use('/api/docs', swaggerUi.serve, async (_req: Request, res: Response) => {
-      return res.send(swaggerUi.generateHTML(await import(__dirname + '/../../swagger.json')));
+      return res.send(swaggerUi.generateHTML(await import(__dirname + '/swagger.json')));
     });
   }
 
@@ -47,7 +47,7 @@ export class Server {
 
     router.use((err: Error, req: Request, res: Response, next: Function) => {
       //'error handler General'
-      // this.logger.error(err);
+      //loger
       res.status(500).send('Internal server error');
     });
   }

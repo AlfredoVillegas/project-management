@@ -4,7 +4,7 @@
     "controllerPathGlobs": ["src/api/**/controllers/*Controller.ts",
       "src/api/**/*docsSwagger.ts" ] ,
     "spec": {
-      "outputDirectory": "./",
+      "outputDirectory": "./src/api/",
       "specVersion": 3,
       "name" : "Promag:project-management",
       "basePath" : "/api",
