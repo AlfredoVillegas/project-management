@@ -7,7 +7,7 @@ export const GithubCredentialsEntity = new EntitySchema<GithubCredential>({
   name: 'GithubCredential',
   tableName: 'github_credentials',
   target: GithubCredential,
-  schema: 'Github_Integrations',
+  schema: 'github_integrations',
   columns: {
     userId: {
       type: String,

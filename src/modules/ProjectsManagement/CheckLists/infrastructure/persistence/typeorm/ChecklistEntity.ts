@@ -7,7 +7,7 @@ export const ChecklistEntity = new EntitySchema<any>({
   name: 'Checklist',
   tableName: 'checklist',
   target: Checklist,
-  schema: 'Projects_Managements',
+  schema: 'projects_managements',
 
   columns: {
     id: {

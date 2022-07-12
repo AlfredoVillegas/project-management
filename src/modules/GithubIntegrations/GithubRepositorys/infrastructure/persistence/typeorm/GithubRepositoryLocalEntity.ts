@@ -6,7 +6,7 @@ export const GithubRepositoryLocalSchema = new EntitySchema<GithubRepositoryLoca
   name: 'GithubRepositoryLocal',
   tableName: 'github_repository_info',
   target: GithubRepositoryLocal,
-  schema: 'Github_Integrations',
+  schema: 'github_integrations',
 
   columns: {
     projectId: {

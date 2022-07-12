@@ -7,7 +7,7 @@ export const ProjectEntity = new EntitySchema<Project>({
   name: 'Project',
   tableName: 'projects',
   target: Project,
-  schema: 'Projects_Managements',
+  schema: 'projects_managements',
 
   columns: {
     id: {

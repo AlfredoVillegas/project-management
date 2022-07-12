@@ -8,7 +8,7 @@ export const UserSchema = new EntitySchema<User>({
   name: 'User',
   tableName: 'users',
   target: User,
-  schema: 'Users_Access',
+  schema: 'users_access',
 
   columns: {
     id: {

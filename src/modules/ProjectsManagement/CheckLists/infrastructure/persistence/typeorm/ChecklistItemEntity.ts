@@ -13,7 +13,7 @@ export const ChecklistItemEntity = new EntitySchema<ChecklistItemProps>({
   name: 'ChecklistItem',
   tableName: 'checklist_item',
   target: ChecklistItem,
-  schema: 'Projects_Managements',
+  schema: 'projects_managements',
 
   columns: {
     id: {
