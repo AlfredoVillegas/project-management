@@ -1,6 +1,6 @@
-import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
-import { TaskAccepter } from '../../../../src/modules/ProjectsManagement/Tasks/application/TaskAccepter';
-import { EventBusMock } from '../../Project/__mocks__/EventBusMock';
+import { TaskAccepter } from '../../../../../src/modules/ProjectsManagement/Tasks/application/TaskAccepter';
+import { Uuid } from '../../../../../src/modules/Shared/domain/value-object/Uuid';
+import { EventBusMock } from '../../Projects/__mocks__/EventBusMock';
 import { tasktDataForTest } from '../__mocks__/taskDataForTest';
 import { TaskRepositoryMock } from '../__mocks__/TaskRepositoryMosck';
 

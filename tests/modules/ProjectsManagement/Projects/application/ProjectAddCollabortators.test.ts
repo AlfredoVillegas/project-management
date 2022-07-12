@@ -1,5 +1,5 @@
-import { AddCollaborators } from '../../../../src/modules/ProjectsManagement/Projects/application/AddCollaborators';
-import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
+import { AddCollaborators } from '../../../../../src/modules/ProjectsManagement/Projects/application/AddCollaborators';
+import { Uuid } from '../../../../../src/modules/Shared/domain/value-object/Uuid';
 import { EventBusMock } from '../__mocks__/EventBusMock';
 import { projectDataForTest } from '../__mocks__/projectDataForTest';
 import { ProjectRepositoryMock } from '../__mocks__/ProjectRepositoryMock';

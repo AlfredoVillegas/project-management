@@ -1,8 +1,8 @@
-import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
-import { TaskCreatorParams } from '../../../../src/modules/ProjectsManagement/Tasks/application/TaskCreator';
-import { Task } from '../../../../src/modules/ProjectsManagement/Tasks/domain/Task';
-import { TaskRepository } from '../../../../src/modules/ProjectsManagement/Tasks/domain/TaskRepository';
-import { TaskStatus } from '../../../../src/modules/ProjectsManagement/Tasks/domain/TaskStatus';
+import { Uuid } from '../../../../../src/modules/Shared/domain/value-object/Uuid';
+import { TaskCreatorParams } from '../../../../../src/modules/ProjectsManagement/Tasks/application/TaskCreator';
+import { Task } from '../../../../../src/modules/ProjectsManagement/Tasks/domain/Task';
+import { TaskRepository } from '../../../../../src/modules/ProjectsManagement/Tasks/domain/TaskRepository';
+import { TaskStatus } from '../../../../../src/modules/ProjectsManagement/Tasks/domain/TaskStatus';
 
 export class TaskRepositoryMock implements TaskRepository {
   private tasks: Task[] = [];

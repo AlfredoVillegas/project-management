@@ -1,7 +1,7 @@
-import { ProjectParams } from '../../../../src/modules/ProjectsManagement/Projects/application/ProjectCreator';
-import { Project } from '../../../../src/modules/ProjectsManagement/Projects/domain/Project';
-import { ProjectRepository } from '../../../../src/modules/ProjectsManagement/Projects/domain/ProjectRepository';
-import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
+import { ProjectParams } from '../../../../../src/modules/ProjectsManagement/Projects/application/ProjectCreator';
+import { Project } from '../../../../../src/modules/ProjectsManagement/Projects/domain/Project';
+import { ProjectRepository } from '../../../../../src/modules/ProjectsManagement/Projects/domain/ProjectRepository';
+import { Uuid } from '../../../../../src/modules/Shared/domain/value-object/Uuid';
 
 export class ProjectRepositoryMock implements ProjectRepository {
   private projects: Project[] = [];

@@ -1,6 +1,6 @@
-import { DomainEvent } from '../../../../src/modules/Shared/domain/DomainEvent';
-import { DomainEventReceiver } from '../../../../src/modules/Shared/domain/DomainEventReceiver';
-import { EventBus } from '../../../../src/modules/Shared/domain/EventBus';
+import { DomainEvent } from '../../../../../src/modules/Shared/domain/DomainEvent';
+import { DomainEventReceiver } from '../../../../../src/modules/Shared/domain/DomainEventReceiver';
+import { EventBus } from '../../../../../src/modules/Shared/domain/EventBus';
 
 export class EventBusMock implements EventBus {
   private callsToPublishEvent = 0;

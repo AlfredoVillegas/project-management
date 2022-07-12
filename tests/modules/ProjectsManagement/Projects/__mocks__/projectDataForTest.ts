@@ -1,5 +1,5 @@
-import { ProjectParams } from '../../../../src/modules/ProjectsManagement/Projects/application/ProjectCreator';
-import { Uuid } from '../../../../src/modules/Shared/domain/value-object/Uuid';
+import { ProjectParams } from '../../../../../src/modules/ProjectsManagement/Projects/application/ProjectCreator';
+import { Uuid } from '../../../../../src/modules/Shared/domain/value-object/Uuid';
 
 export function projectDataForTest(): ProjectParams {
   return {
