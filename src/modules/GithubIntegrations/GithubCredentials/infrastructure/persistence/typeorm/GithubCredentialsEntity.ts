@@ -1,5 +1,4 @@
 import { EntitySchema } from 'typeorm';
-import { transform } from 'typescript';
 import { UuidTransformerOrm } from '../../../../../Shared/percistence/typeorm/UuidTransformerOrm';
 import { GithubCredential } from '../../../domain/GithubCredential';
 import { GithubCredentialUserName } from '../../../domain/GithubCredentialUserName';
@@ -8,6 +7,7 @@ export const GithubCredentialsEntity = new EntitySchema<GithubCredential>({
   name: 'GithubCredential',
   tableName: 'github_credentials',
   target: GithubCredential,
+  schema: 'Github_Integrations',
   columns: {
     userId: {
       type: String,

@@ -7,6 +7,7 @@ export const TaskEntitySchema = new EntitySchema<Task>({
   name: 'Task',
   tableName: 'tasks',
   target: Task,
+  schema: 'Projects_Managements',
   columns: {
     id: {
       type: String,
