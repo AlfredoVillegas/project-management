@@ -7,7 +7,7 @@ import { ProjectRepositoryMock } from '../__mocks__/ProjectRepositoryMock';
 let projectRepository: ProjectRepositoryMock;
 let addCollaborators: AddCollaborators;
 let eventBus: EventBusMock;
-let projectEntity = ProjectRepositoryMock.createEntityDomainFromDataTest(projectDataForTest());
+let projectEntity = ProjectRepositoryMock.createProjectEntityFromTestData(projectDataForTest());
 
 beforeEach(() => {
   eventBus = new EventBusMock();
