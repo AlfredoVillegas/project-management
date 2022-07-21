@@ -3,7 +3,7 @@ import { Uuid } from '../../../../../Shared/domain/value-object/Uuid';
 import { UuidTransformerOrm } from '../../../../../Shared/percistence/typeorm/UuidTransformerOrm';
 import { Project } from '../../../domain/Project';
 
-export const ProjectEntity = new EntitySchema<Project>({
+export const ProjectEntity = new EntitySchema<any>({
   name: 'Project',
   tableName: 'projects',
   target: Project,
@@ -15,10 +15,12 @@ export const ProjectEntity = new EntitySchema<Project>({
       primary: true,
       transformer: UuidTransformerOrm
     },
-    name: {
+    _name: {
+      name: 'name',
       type: String
     },
-    description: {
+    _description: {
+      name: 'description',
       type: String
     },
     creator: {

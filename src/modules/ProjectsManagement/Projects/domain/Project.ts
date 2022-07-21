@@ -5,18 +5,25 @@ import { ProjectCreatedDomainEvent } from './ProjectCreatedDomainEvent';
 
 export class Project extends DomainEntity {
   readonly id: Uuid;
-  readonly name: string;
-  readonly description: string;
+  private _name: string;
+  private _description: string;
   readonly creator: Uuid;
   readonly collaboratorsIds: Uuid[];
 
   constructor(id: Uuid, name: string, description: string, creator: Uuid, collaboratorsIds?: Uuid[]) {
     super();
     this.id = id;
-    this.name = name;
-    this.description = description;
+    this._name = name;
+    this._description = description;
     this.creator = creator;
     this.collaboratorsIds = collaboratorsIds || [];
+  }
+
+  public get name(): string {
+    return this._name;
+  }
+  public get description(): string {
+    return this._description;
   }
 
   static create(id: Uuid, name: string, description: string, creator: Uuid, collaboratorsIds?: Uuid[]): Project {
@@ -25,8 +32,8 @@ export class Project extends DomainEntity {
     project.addDomainEvent(
       new ProjectCreatedDomainEvent(
         project.id.value,
-        project.name,
-        project.description,
+        project._name,
+        project._description,
         project.creator.value,
         project.collaboratorsIds.map(element => element.value)
       )
@@ -36,6 +43,11 @@ export class Project extends DomainEntity {
 
   public hasCreatePermission(userId: Uuid): boolean {
     return this.creator.value === userId.value;
+  }
+
+  public UpdateMainAttributes(newName?: string, newDescription?: string) {
+    this._name = newName || this._name;
+    this._description = newDescription || this._description;
   }
 
   public addCollaborators(collaborators: Uuid[]): void {
@@ -54,8 +66,8 @@ export class Project extends DomainEntity {
   public toPrimitives() {
     return {
       id: this.id.value,
-      name: this.name,
-      description: this.description,
+      name: this._name,
+      description: this._description,
       creator: this.creator.value,
       collaboratorsIds: this.collaboratorsIds?.map(collaborator => collaborator.value)
     };
