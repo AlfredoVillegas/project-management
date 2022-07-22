@@ -3,7 +3,7 @@ import { TaskCreator } from '../../../../../src/modules/ProjectsManagement/Tasks
 import { Task } from '../../../../../src/modules/ProjectsManagement/Tasks/domain/Task';
 import { EventBusMock } from '../../Projects/__mocks__/EventBusMock';
 import { tasktDataForTest } from '../__mocks__/taskDataForTest';
-import { TaskRepositoryMock } from '../__mocks__/TaskRepositoryMosck';
+import { TaskRepositoryMock } from '../__mocks__/TaskRepositoryMock';
 
 let taskRepository: TaskRepositoryMock;
 let taskCreator: TaskCreator;

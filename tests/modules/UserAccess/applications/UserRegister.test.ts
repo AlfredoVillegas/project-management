@@ -1,6 +1,5 @@
 import { UserRegister } from '../../../../src/modules/UserAccess/Users/application/UserRegister';
 import { UserEmailAlreadyExists } from '../../../../src/modules/UserAccess/Users/domain/Errors';
-import { User } from '../../../../src/modules/UserAccess/Users/domain/User';
 import { UserId } from '../../../../src/modules/UserAccess/Users/domain/UserId';
 import { MockEventBus } from '../__mocks__/MockEventBus';
 import { MockUserRepository } from '../__mocks__/MockUserRepository';
@@ -19,10 +18,8 @@ describe('Test of UserRegister', () => {
   it('should create a valid user', async () => {
     await userRegister.run(userRepository.userDataPlainForTest);
 
-    const userExist = await userRepository.search(new UserId(userRepository.userDataPlainForTest.id));
-
-    expect(userExist).toBeInstanceOf(User);
-    expect(userExist?.id.value).toEqual(userRepository.userDataPlainForTest.id);
+    const userExist = await userRepository.findById(new UserId(userRepository.userDataPlainForTest.id));
+    expect(userExist?.toPrimitives()).toEqual(userRepository.userDataPlainForTest);
     expect(eventBus.getCallsToPublishEvent()).toEqual(1);
   });
 

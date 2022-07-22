@@ -2,7 +2,7 @@ import { TaskAccepter } from '../../../../../src/modules/ProjectsManagement/Task
 import { Uuid } from '../../../../../src/modules/Shared/domain/value-object/Uuid';
 import { EventBusMock } from '../../Projects/__mocks__/EventBusMock';
 import { tasktDataForTest } from '../__mocks__/taskDataForTest';
-import { TaskRepositoryMock } from '../__mocks__/TaskRepositoryMosck';
+import { TaskRepositoryMock } from '../__mocks__/TaskRepositoryMock';
 
 let taskRepository: TaskRepositoryMock;
 let taskAccepter: TaskAccepter;

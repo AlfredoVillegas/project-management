@@ -16,17 +16,22 @@ describe('Project Updater', () => {
   it('should update name or description of an existing project ', async () => {
     await projectRepository.save(projectEntity);
 
-    let updatedProject = {
-      projectId: projectEntity.id.value,
+    let expectedProject = {
       name: 'updated name',
       description: 'updated description'
     };
-    await projectUpdater.execute(projectEntity.creator.value, { ...updatedProject });
 
+    await projectUpdater.execute(projectEntity.creator.value, {
+      projectId: projectEntity.id.value,
+      ...expectedProject
+    });
+
+    expectedProject = {
+      ...projectEntity.toPrimitives(),
+      name: expectedProject.name,
+      description: expectedProject.description
+    };
     const projectInDb = await projectRepository.searchOneBy(projectEntity.id);
-    expect(projectInDb).toBeInstanceOf(Project);
-    expect(projectInDb?.id.value).toEqual(updatedProject.projectId);
-    expect(projectInDb?.name).toEqual(updatedProject.name);
-    expect(projectInDb?.description).toEqual(updatedProject.description);
+    expect(projectInDb?.toPrimitives()).toEqual(expectedProject);
   });
 });

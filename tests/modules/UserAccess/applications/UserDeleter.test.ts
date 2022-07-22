@@ -16,7 +16,7 @@ beforeEach(() => {
 describe('Test od UserDeleter', () => {
   it('should deleter user', async () => {
     await userDeleter.run(userRepository.userDataPlainForTest.id);
-    const userInDB = await userRepository.search(new UserId(userRepository.userDataPlainForTest.id));
-    expect(userInDB).toBe(null);
+    const userInDB = await userRepository.findById(new UserId(userRepository.userDataPlainForTest.id));
+    expect(userInDB).toBeNull();
   });
 });
