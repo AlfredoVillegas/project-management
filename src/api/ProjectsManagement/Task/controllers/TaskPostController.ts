@@ -8,6 +8,7 @@ export interface TaskPostBody {
   name: string;
   description: string;
   projectId: UUID_STRING;
+  taskDependent?: UUID_STRING;
 }
 
 export class TaskPostController {
@@ -15,9 +16,9 @@ export class TaskPostController {
 
   async execute(req: Request, res: Response) {
     try {
-      const { id, name, description, projectId } = req.body as TaskPostBody;
+      const { id, name, description, projectId, taskDependent } = req.body as TaskPostBody;
 
-      await this.taskCreatorService.execute({ id, name, description, projectId });
+      await this.taskCreatorService.execute({ id, name, description, projectId, taskDependent });
 
       responseSuccess(res, 201);
     } catch (error) {

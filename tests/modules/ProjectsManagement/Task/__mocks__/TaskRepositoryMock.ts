@@ -8,7 +8,15 @@ export class TaskRepositoryMock implements TaskRepository {
   private mockSave = jest.fn();
 
   static createEntityDomainFromDataTest(data: TaskCreatorParams): Task {
-    return new Task(new Uuid(data.id), data.name, data.description, new TaskStatus('todo'), Uuid.random());
+    const taskDependentId = data.taskDependent ? new Uuid(data.taskDependent) : undefined;
+    return new Task(
+      new Uuid(data.id),
+      data.name,
+      data.description,
+      new TaskStatus('todo'),
+      Uuid.random(),
+      taskDependentId
+    );
   }
 
   async save(task: Task): Promise<void> {

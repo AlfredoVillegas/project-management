@@ -18,7 +18,7 @@ export class TaskUpdater {
     let task = await this.taskFinder.execute(id);
     const newName = name || task.name;
     const newDescription = description || task.name;
-    task = new Task(task.id, newName, newDescription, task.status, task.projectId);
+    task = new Task(task.id, newName, newDescription, task.status, task.projectId, task.taskDependent);
 
     await this.repository.save(task);
   }

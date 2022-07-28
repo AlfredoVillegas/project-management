@@ -30,6 +30,11 @@ export const TaskEntitySchema = new EntitySchema<Task>({
         }
       }
     },
+    taskDependent: {
+      type: String,
+      nullable: true,
+      transformer: UuidTransformerOrm
+    },
     projectId: {
       type: String,
       transformer: UuidTransformerOrm

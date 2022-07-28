@@ -10,6 +10,7 @@ export class Task extends DomainEntity {
   readonly name: string;
   readonly description: string;
   private _status: TaskStatus;
+  readonly taskDependent?: Uuid;
   public get status(): TaskStatus {
     return this._status;
   }
@@ -18,18 +19,19 @@ export class Task extends DomainEntity {
   }
   readonly projectId: Uuid;
 
-  constructor(id: Uuid, name: string, description: string, status: TaskStatus, projectId: Uuid) {
+  constructor(id: Uuid, name: string, description: string, status: TaskStatus, projectId: Uuid, taskDependent?: Uuid) {
     super();
     this.id = id;
     this.name = name;
     this.description = description;
     this._status = status;
     this.projectId = projectId;
+    this.taskDependent = taskDependent;
   }
 
-  static create(id: Uuid, name: string, description: string, projectId: Uuid): Task {
+  static create(id: Uuid, name: string, description: string, projectId: Uuid, taskDependent?: Uuid): Task {
     const status = new TaskStatus('todo');
-    const task = new Task(id, name, description, status, projectId);
+    const task = new Task(id, name, description, status, projectId, taskDependent);
     task.addDomainEvent(new TaskCreatedDomainEvent(task.id.value, task.name, task.projectId.value));
     return task;
   }
@@ -42,6 +44,10 @@ export class Task extends DomainEntity {
   public accept(collaborator: Uuid): void {
     this._status = new TaskStatus('accepted');
     this.addDomainEvent(new TaskAcceptedDomainEvent(this.id.value, collaborator.value, this.projectId.value));
+  }
+
+  public isCompleted(): boolean {
+    return this.status.value === 'completed';
   }
 
   public toPrimitives() {
