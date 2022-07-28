@@ -1,11 +1,15 @@
-import { Connection, createConnection } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 import { BetterSqlite3ConnectionOptions } from 'typeorm/driver/better-sqlite3/BetterSqlite3ConnectionOptions';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 import { postgresConfig } from './typeOrmConfig';
 
 export async function createTypeOrmClientConnection(): Promise<Connection> {
-  const connection = await createConnection(getDataBaseConfig());
-  return connection;
+  try {
+    const connection = await createConnection(getDataBaseConfig());
+    return connection;
+  } catch (error) {
+    return getConnection();
+  }
 }
 
 export function getDataBaseConfig() {
