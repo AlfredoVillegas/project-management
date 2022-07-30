@@ -56,6 +56,7 @@ export class Task extends DomainEntity {
       name: this.name,
       description: this.description,
       status: this.status.value,
+      taskDependent: this.taskDependent?.value,
       projectId: this.projectId.value
     };
   }

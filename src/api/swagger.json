@@ -232,6 +232,9 @@
 					},
 					"projectId": {
 						"$ref": "#/components/schemas/UUID_STRING"
+					},
+					"taskDependent": {
+						"$ref": "#/components/schemas/UUID_STRING"
 					}
 				},
 				"required": [

@@ -7,6 +7,7 @@ export interface TaskResponse {
   name: string;
   description: string;
   status: string;
+  taskDependent?: string;
   projectId: string;
 }
 
